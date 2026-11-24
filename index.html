@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Missão: Direitos Trabalhistas</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #17191c;
+    color: white;
+    text-align: center;
+}
+
+header {
+    background: #292d32;
+    padding: 30px 15px;
+    border-bottom: 4px solid #e99b26;
+}
+
+header h1 {
+    color: #f5a623;
+    font-size: 32px;
+}
+
+header p {
+    color: #ddd;
+}
+
+.container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+h2 {
+    color: #f5a623;
+}
+
+.opcoes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+    margin-top: 25px;
+}
+
+button {
+    background: #343a40;
+    color: white;
+    border: 2px solid #f5a623;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 17px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #f5a623;
+    color: #17191c;
+    transform: scale(1.04);
+}
+
+#resultado {
+    display: none;
+    margin-top: 35px;
+    padding: 25px;
+    background: #292d32;
+    border-radius: 15px;
+    border: 2px solid #f5a623;
+}
+
+#resultado h2 {
+    color: #f5a623;
+}
+
+video, iframe {
+    width: 100%;
+    max-width: 650px;
+    height: 350px;
+    margin-top: 20px;
+    border-radius: 12px;
+    border: none;
+}
+
+.voltar {
+    margin-top: 20px;
+    background: #e99b26;
+    color: #17191c;
+    font-weight: bold;
+}
+
+footer {
+    padding: 20px;
+    color: #aaa;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>⚙ MISSÃO: DIREITOS TRABALHISTAS</h1>
+    <p>Conheça seus direitos e lute por um trabalho digno!</p>
+</header>
+
+<div class="container">
+
+    <h2>ESCOLHA UM DIREITO TRABALHISTA</h2>
+
+    <p>Clique em uma das opções para descobrir mais.</p>
+
+    <div class="opcoes">
+
+        <button onclick="mostrar('ferias')">
+            🏖️ Férias remuneradas
+        </button>
+
+        <button onclick="mostrar('decimo')">
+            💰 13º salário
+        </button>
+
+        <button onclick="mostrar('salario')">
+            💵 Salário mínimo
+        </button>
+
+        <button onclick="mostrar('jornada')">
+            ⏰ Jornada de trabalho
+        </button>
+
+        <button onclick="mostrar('fgts')">
+            🏦 FGTS
+        </button>
+
+        <button onclick="mostrar('licenca')">
+            👶 Licença-maternidade
+        </button>
+
+        <button onclick="mostrar('seguranca')">
+            🦺 Segurança no trabalho
+        </button>
+
+        <button onclick="mostrar('descanso')">
+            🛌 Descanso semanal
+        </button>
+
+    </div>
+
+    <div id="resultado">
+        <h2 id="titulo"></h2>
+        <p id="descricao"></p>
+
+        <h3>🎬 ASSISTA AO VÍDEO PARA APRENDER MAIS</h3>
+
+        <iframe id="video"
+        src=""
+        allowfullscreen>
+        </iframe>
+
+        <br>
+
+        <button class="voltar" onclick="voltar()">
+            VOLTAR ÀS OPÇÕES
+        </button>
+    </div>
+
+</div>
+
+<footer>
+    <p>Projeto educativo – Direitos Humanos e Trabalho Digno</p>
+</footer>
+
+<script>
+
+const direitos = {
+
+ferias: {
+titulo: "FÉRIAS REMUNERADAS",
+descricao: "Após cada período de 12 meses de trabalho, o empregado tem direito, em regra, a 30 dias de férias remuneradas, com adicional de pelo menos um terço do salário.",
+video: "VIDEO_ID_FERIAS"
+},
+
+decimo: {
+titulo: "13º SALÁRIO",
+descricao: "É um pagamento extra garantido aos trabalhadores que têm direito a ele. Seu valor é proporcional ao tempo trabalhado no ano.",
+video: "VIDEO_ID_DECIMO"
+},
+
+salario: {
+titulo: "SALÁRIO MÍNIMO",
+descricao: "É o menor valor de salário que pode ser pago mensalmente ao trabalhador que recebe o mínimo legal, respeitadas as regras aplicáveis.",
+video: "VIDEO_ID_SALARIO"
+},
+
+jornada: {
+titulo: "JORNADA DE TRABALHO",
+descricao: "A regra geral prevista na Constituição é de até 8 horas diárias e 44 horas semanais, respeitadas as regras específicas e os acordos permitidos.",
+video: "VIDEO_ID_JORNADA"
+},
+
+fgts: {
+titulo: "FGTS",
+descricao: "O Fundo de Garantia do Tempo de Serviço recebe depósitos feitos pelo empregador em uma conta vinculada ao trabalhador, conforme a legislação.",
+video: "VIDEO_ID_FGTS"
+},
+
+licenca: {
+titulo: "LICENÇA-MATERNIDADE",
+descricao: "A trabalhadora tem direito, em regra, a 120 dias de licença-maternidade, sem prejuízo do emprego e do salário.",
+video: "VIDEO_ID_LICENCA"
+},
+
+seguranca: {
+titulo: "SEGURANÇA NO TRABALHO",
+descricao: "O trabalhador tem direito a um ambiente de trabalho seguro, com medidas de prevenção de acidentes e doenças ocupacionais.",
+video: "VIDEO_ID_SEGURANCA"
+},
+
+descanso: {
+titulo: "DESCANSO SEMANAL",
+descricao: "O trabalhador tem direito a um descanso semanal remunerado de 24 horas consecutivas, preferencialmente aos domingos.",
+video: "VIDEO_ID_DESCANSO"
+}
+
+};
+
+function mostrar(opcao) {
+
+    const direito = direitos[opcao];
+
+    document.getElementById("titulo").innerText =
+    direito.titulo;
+
+    document.getElementById("descricao").innerText =
+    direito.descricao;
+
+    document.getElementById("video").src =
+    "https://www.youtube.com/embed/" + direito.video;
+
+    document.getElementById("resultado").style.display = "block";
+
+    document.querySelector(".opcoes").style.display = "none";
+
+    document.querySelector("h2").style.display = "none";
+}
+
+function voltar() {
+
+    document.getElementById("resultado").style.display = "none";
+
+    document.getElementById("video").src = "";
+
+    document.querySelector(".opcoes").style.display = "grid";
+
+    document.querySelector(".container > h2").style.display = "block";
+}
+
+</script>
+
+</body>
+</html>
